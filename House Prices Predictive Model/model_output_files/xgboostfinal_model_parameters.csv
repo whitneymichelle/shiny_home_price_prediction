@@ -1,0 +1,2 @@
+min_n,tree_depth,learn_rate,loss_reduction,.config
+27,5,0.1,1e-10,Model055
