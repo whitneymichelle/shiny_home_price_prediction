@@ -40,6 +40,10 @@ In this script, the data is imported, preprocessed, and the model fitted using t
 
 The server takes in user inputs, the model's predictors, and the model is used to predict the house sale price.
 
+## Shiny Dashboard
+
+![alt text](https://github.com/whitneymichelle/house_sale_price/blob/main/House%20Prices%20Predictive%20Model/shiny_dashboard/shiny_dashboard_sreenshot.png)
+
 ## R Session Information
 
 - Session info -------------------------------------------------------------------------------------------------------------------
