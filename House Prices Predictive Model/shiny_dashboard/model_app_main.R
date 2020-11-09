@@ -22,4 +22,4 @@ source('model_app_server.R')
 
 #Run shiny app
 appDir <- shinyApp(ui = ui, server = server)
-runApp(appDir)
+runApp(appDir, launch.browser = TRUE)

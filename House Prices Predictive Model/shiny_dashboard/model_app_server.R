@@ -21,7 +21,7 @@ server <- function(input, output, session) {
   
   output$prediction <- renderText ({
     
-    as.character(prediction_df()[1,])
+    paste("Predicted Sale Price:", "", "", as.character(prediction_df()[1,]))
     
     
   })

@@ -1,11 +1,6 @@
 ui <- fluidPage(
-     titlePanel(h1("Predict Home Sale Price")),
-            tags$h1(tags$style(".titlePanel{color:black;
-                                              font-size: 60px;
-                               font-weight:800
-                               }"
-                               )),
-     tabPanel( "House Sale Predictions", fluid = TRUE,
+     headerPanel("Home Sale Price Predictor"),
+          tabPanel( "House Sale Predictions", fluid = TRUE,
               sidebarLayout(
                 sidebarPanel(width = 2,
                              sliderTextInput("overallquality", "Overall Quality",
@@ -34,7 +29,12 @@ ui <- fluidPage(
                          textOutput("prediction"),
                          tags$head(tags$style("#prediction{color:black;
                                               font-size: 40px;
-                                              font-weight:500
+                                              font-weight:300;
+                                              border: 10px solid black;
+                                               text-align: center;
+                                                background-color:lightblue;
+                                                background: rgba(0,191, 255, .3)
+                                              
                                               }"
                                               ))
                           

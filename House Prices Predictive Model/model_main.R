@@ -58,6 +58,7 @@ wf <- workflow() %>%
 final <-wf %>%
   fit(data  = train_df)
 
+
 # Predictions with training set
 predictions_train <- predict(final, train_df) %>%
   bind_cols(train_df %>% select_all)
@@ -65,75 +66,75 @@ predictions_train <- predict(final, train_df) %>%
 # Test data predictions merged with test data
 predictions_test <- predict(final, test_df) %>%
   bind_cols(test_df %>% select_all())
-
-# Performance Measures---------
-
-# Rmse of train data
-train_rmse <- predictions_train %>%
-  rmse(truth = sale_price, .pred)
-
-# Rmse on test data
-test_rmse <- predictions_test %>%
-  rmse(truth = sale_price, .pred)
-
-# Variable imporantance plot
-imp_img <- final %>%
-  pull_workflow_fit()%>%
-  vip()
-
-# Save model
-saveRDS(final, paste0("model_output_files/", "final_model.rds"))
-
-# Print rmse
-print(train_rmse)
-print(test_rmse)
-
-# Save plot of most important variables
-ggsave(paste0("model_output_files/", "imp_var_plot.png"), plot =imp_img)
-
-#Save prediction train and test outputs
-OUT <- createWorkbook()
-
-# Add some sheets to the workbook
-addWorksheet(OUT, "predictions_train_output")
-addWorksheet(OUT, "predictions_test_output")
-addWorksheet(OUT, "train_rmse")
-addWorksheet(OUT, "test_rmse")
-
-# Write the data to the sheets
-writeData(OUT, sheet = "predictions_train_output", x = predictions_train)
-writeData(OUT, sheet = "predictions_test_output", x = predictions_train)
-writeData(OUT, sheet = "train_rmse", x = train_rmse)
-writeData(OUT, sheet = "test_rmse", x = test_rmse)
-
-# Export the file
-saveWorkbook(OUT, paste0("model_output_files/", "model_output.xlsx", overwrite = TRUE))
-
-# Exploration of errors
-quantile_error<- predictions_test %>%
-  mutate(error = abs(sale_price -.pred)) %>%
-  mutate(error = as.integer(error))%>%
-  mutate(quartile = ntile(error, 4)) %>%
-  select(quartile, error) %>%
-  group_by(quartile) %>%
-  summarise(max = max(error), n = n())%>%
-  mutate(cumsum = cumsum(n))
-  
-deciles_error<- predictions_test %>%
-  mutate(error = abs(sale_price -.pred)) %>%
-  mutate(error = as.integer(error))%>%
-  mutate(decile = ntile(error, 10)) %>%
-  select(decile, error) %>%
-  group_by(decile) %>%
-  summarise(max = max(error), n = n())%>%
-  mutate(cumsum = cumsum(n))
-
-error_plot <- ggplot(deciles_error, aes(x = decile, y = max))+
-  geom_line()+
-  theme_classic()+
-  ylab('error')
-
-ggsave(paste0("model_output_files/", "error_plot.png"), plot =imp_img)
+# 
+# # Performance Measures and Modell Print Outputs Below---------
+# 
+# # Rmse of train data
+# train_rmse <- predictions_train %>%
+#   rmse(truth = sale_price, .pred)
+# 
+# # Rmse on test data
+# test_rmse <- predictions_test %>%
+#   rmse(truth = sale_price, .pred)
+# 
+# # Variable imporantance plot
+# imp_img <- final %>%
+#   pull_workflow_fit()%>%
+#   vip()
+# 
+# # Save model
+# saveRDS(final, paste0("model_output_files/", "final_model.rds"))
+# 
+# # Print rmse
+# print(train_rmse)
+# print(test_rmse)
+# 
+# # Save plot of most important variables
+# ggsave(paste0("model_output_files/", "imp_var_plot.png"), plot =imp_img)
+# 
+# #Save prediction train and test outputs
+# OUT <- createWorkbook()
+# 
+# # Add some sheets to the workbook
+# addWorksheet(OUT, "predictions_train_output")
+# addWorksheet(OUT, "predictions_test_output")
+# addWorksheet(OUT, "train_rmse")
+# addWorksheet(OUT, "test_rmse")
+# 
+# # Write the data to the sheets
+# writeData(OUT, sheet = "predictions_train_output", x = predictions_train)
+# writeData(OUT, sheet = "predictions_test_output", x = predictions_train)
+# writeData(OUT, sheet = "train_rmse", x = train_rmse)
+# writeData(OUT, sheet = "test_rmse", x = test_rmse)
+# 
+# # Export the file
+# saveWorkbook(OUT, paste0("model_output_files/", "model_output.xlsx", overwrite = TRUE))
+# 
+# # Exploration of errors
+# quantile_error<- predictions_test %>%
+#   mutate(error = abs(sale_price -.pred)) %>%
+#   mutate(error = as.integer(error))%>%
+#   mutate(quartile = ntile(error, 4)) %>%
+#   select(quartile, error) %>%
+#   group_by(quartile) %>%
+#   summarise(max = max(error), n = n())%>%
+#   mutate(cumsum = cumsum(n))
+#   
+# deciles_error<- predictions_test %>%
+#   mutate(error = abs(sale_price -.pred)) %>%
+#   mutate(error = as.integer(error))%>%
+#   mutate(decile = ntile(error, 10)) %>%
+#   select(decile, error) %>%
+#   group_by(decile) %>%
+#   summarise(max = max(error), n = n())%>%
+#   mutate(cumsum = cumsum(n))
+# 
+# error_plot <- ggplot(deciles_error, aes(x = decile, y = max))+
+#   geom_line()+
+#   theme_classic()+
+#   ylab('error')
+# 
+# ggsave(paste0("model_output_files/", "error_plot.png"), plot =imp_img)
 
 
 
