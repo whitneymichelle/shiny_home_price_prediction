@@ -20,10 +20,9 @@ df <- read_csv('train.csv')
 
 #  Clean data column names
 df <- df %>% clean_names() %>%
-# Selecting 15 most important variables found after training
-  select(id, sale_price, overall_qual, gr_liv_area, garage_cars, bsmt_fin_sf1, total_bsmt_sf,
-         x1st_flr_sf, lot_area, garage_area, full_bath, year_built, year_remod_add, fireplace_qu,
-         overall_cond, kitchen_qual, tot_rms_abv_grd)
+# Selecting 10 most important variables found after training
+  select(sale_price, overall_qual, gr_liv_area, garage_cars, bsmt_fin_sf1, total_bsmt_sf,
+         x1st_flr_sf, lot_area, garage_area, full_bath, year_built)
 
 # Split data into test and training sets
 set.seed(345)
@@ -34,7 +33,6 @@ test_df <- testing(split)
 # Create recipe and roles--preprocessing for the model
 recipe <-
   recipe(sale_price ~ ., data = train_df) %>%
-  update_role(id, new_role = "ID") %>%
   step_dummy(all_predictors(), -all_numeric()) %>%
   step_zv(all_predictors()) %>%
   step_center(all_predictors(), -all_nominal()) %>%
