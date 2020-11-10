@@ -47,7 +47,7 @@ The training dataset from House Prices: Advanced Regression Techniques Kaggle co
 ## Shiny Dashboard
 Link to live dashboard: https://whitneymichelle.shinyapps.io/home_price_prediction_app/
 
-![alt text](https://github.com/whitneymichelle/house_sale_price/blob/main/House%20Prices%20Predictive%20Model/shiny_dashboard/shiny_dashboard_sreenshot.png)
+![alt text](https://github.com/whitneymichelle/home-sale-price-prediction/blob/main/home_price_prediction_app/dashboard_screenshot.png)
 
 ## R Session Information
 
