@@ -1,0 +1,12 @@
+name: home_price_prediction_app
+title: home_price_prediction_app
+username:
+account: whitneymichelle
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 3198224
+bundleId: 3839975
+url: https://whitneymichelle.shinyapps.io/home_price_prediction_app/
+when: 1604966387.01754
+asMultiple: FALSE
+asStatic: FALSE
