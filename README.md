@@ -1,4 +1,6 @@
 # Home Sale Price Prediction Model
+#### Primary objective: show model demployment in Shiny app
+
 #### Home sale price predictive model and deployment in R shiny dashboard.
 
 The training dataset from House Prices: Advanced Regression Techniques Kaggle competition was used for this project and is referred to as `home_price_prediction_app/house_prices_df.csv` in this repository.
