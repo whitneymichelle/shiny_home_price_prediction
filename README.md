@@ -1,5 +1,5 @@
 # Home Sale Price Prediction Model & Shiny App
-#### Primary objective: show model demployment in Shiny app
+#### Primary objective: show model deployment in Shiny app
 
 #### Home sale price predictive model and deployment in R shiny dashboard.
 
